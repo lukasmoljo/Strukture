@@ -1,3 +1,8 @@
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+
+
 typedef struct ucenik {
     char ime[50], prez[50];
     int bod;
