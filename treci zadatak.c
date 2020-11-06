@@ -73,3 +73,21 @@ void sort(ucenik* head) {
             if (strcmp(j->prez, i->prez) < 0) 
                 swap(i, j); 
 }
+void ucitajIzFile(ucenik* head, FILE* f) {
+    ucenik* i=head;
+    int res=1;
+    while(res!=0) {
+        char ime=(char)malloc(sizeof(char)50), *prez=(char)malloc(sizeof(char)*50);
+        int god;
+        res=fscanf(f, "%s %s %d", ime, prez, &god);
+        if(res==0) break;
+        i=newUcenik(ime, prez, god);
+        i=i->next;
+    }
+}
+
+void pisiUFile(ucenik* head, FILE* f) {
+    for(ucenik* i=head; i!=NULL; i=i->next) 
+        fprintf(f, "%s %s %d\n", i->ime, i->prez, i->god);
+}
+int main{}// za poziv funkcije u mainu trebamo imat file i trebali bi sve ovo prenijet u zadatak 2 zbog ispisa liste.
