@@ -116,6 +116,37 @@ int suma(position suma, position p, position q)
 		}
 		return 0;
 	}
+}
+int pomnozi(position rez, position p, position q)
+{
+	position novi = NULL, temp = NULL, qHead = q;
+	while (p != NULL) {
+		while (q != NULL) {
+			temp = rez;
+			novi = createNew();
+			if (novi == NULL)
+				return 1;
+			novi->eks = q->exp + p->eks;
+			novi->koef = q->koef * p->koef;
+			while (temp->next != NULL && temp->next->eks > novi->eks)
+				temp = temp->next;
+			if (novi->eks == temp->eks) {
+				temp->koef += novi->koef;
+				free(novi);
+				if (temp->next->koef == 0) {
+					novi = temp->next;
+					temp->next = novi->next;
+					free(novi);
+				}
+			}
+			else
+				ubaci(temp, novi);
+			q = q->next;
+		}
+		p = p->next;
+		q = qHead;
+	}
+}
 	
 	
 	
