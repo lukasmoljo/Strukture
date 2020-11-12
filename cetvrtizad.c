@@ -6,7 +6,7 @@ struct polinom {
 	int eks, koef;
 	position next;
 };
-position novi()
+position stvori()
 {
 	position q = (position)malloc(sizeof(position));
 	if (q == NULL) {
@@ -16,22 +16,33 @@ position novi()
 	q->next = NULL;
 	return q;
 }
+int obrisiSve(position p)
+{
+	position temp = NULL;
+	while (p->next != NULL) {
+		temp = p->next;
+		p->next = temp->next;
+		free(temp);
+	}
+}
+
+
 int ubaci(position p, position q)
 {
 	q->next = p->next;
 	p->next = q;
 }
-void citajpolinom(position p, char* polinom.txt) {
+void citajpolinom(position p, char* polinom1) {
 	FILE* file = NULL;
-	file = fopen(polinom.txt, "r");
+	file = fopen(polinom1, "r");
 	if (file == NULL) {
-		printf("Greška u u?itavanju");
+		printf("GreÅ¡ka u u?itavanju");
 		return -1;
 	}
-	position q=NULL, temp=NULL;
+	position q = NULL, temp = NULL;
 	while (!feof(file)) {
 		temp = p;
-		q = novi();
+		q = stvori();
 		if (q == NULL)
 			return -1;
 		fscanf(file, " %d %d", &q->koef, &q->eks);
@@ -57,6 +68,54 @@ void citajpolinom(position p, char* polinom.txt) {
 	fclose(file);
 	return 0;
 }
+int ispis(position p)
+{
+	while (p != NULL) {
+		printf("%d %d\n", p->koef, p->eks);
+		p = p->next;
+	}
+}
+int suma(position suma, position p, position q)
+{
+	position novi = NULL, temp = NULL;
+	while (p != NULL && q != NULL) {
+		if (p->next->eks > q->next->eks) {
+			novi = stvori();
+			if (novi == NULL)
+				return -1;
+			if (p->eks > q->eks) {
+				novi->koef = p->koef;
+				novi->eks = p->eks;
+			}
+			else if (p->eks < q->eks) {
+				novi->koef = q->koef;
+				novi->eks = q->eks;
+			}
+			else {
+				novi->eks = p->eks;
+				novi->koef = p->koef + q->koef;
+				p = p->next;
+				q = q->next;
+			}
+			ubaci(suma, novi);
+			suma = novi;
+
+		}
+		if (p == NULL)
+			temp = q;
+		else
+			temp = p;
+		while (temp != NULL) {
+			novi = createNew();
+			if (novi == NULL)
+				return 1;
+			kopiraj(novi, temp);
+			ubaci(suma, novi);
+			suma = novi;
+			temp = temp->next;
+		}
+		return 0;
+	}
 	
 	
 	
