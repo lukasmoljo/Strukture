@@ -6,6 +6,38 @@ struct polinom {
 	int eks, koef;
 	position next;
 };
+int citajpolinom(pozicija p, char *name);
+pozicija stvori();
+int ispis(pozicija p);
+int suma(pozicija suma, pozicija p, pozicija q);
+int pomnozi(pozicija pomnozi, pozicija p, pozicija q);
+int ubaci(pozicija p, pozicija q);
+int obrisiSve(pozicija p);
+
+int main()
+{
+	FILE *f;
+	polinom head1, head2, headSuma, headPomnozi;
+	head1.next = head2.next = headSuma.next = headPomnozi.next = NULL;
+	
+	citajpolinom(&head1, "polinom1.txt");
+	citajpolinom(&head2, "polinom2.txt");
+
+	suma(&headSuma, head1.next, head2.next);
+	pomnozi(&headPomnozi, head1.next, head2.next);
+	printf("MNOZENJE:\n");
+	ispis(headPomnozi.next);
+	printf("\nZBRAJANJE:\n");
+	ispis(headSuma.next);
+	obrisiSve(&head1);
+	obrisiSve(&head2);
+	obrisiSve(&headSuma);
+	obrisiSve(&headPomnozi);
+	printf ("%p", head1.next);
+
+	system("pause");
+	return 0;
+}
 position stvori()
 {
 	position q = (position)malloc(sizeof(position));
