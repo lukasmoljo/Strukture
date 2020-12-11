@@ -8,17 +8,6 @@ struct stog {
     int br;
     position next;
 };
-int main()
-{
-    srand(time(NULL));
-
-    position head = NULL;
-    RadStoga(head);
-
-
-
-    return 0;
-}
 int Push(int,position);           
 int Pop(position);   
 void Brisi(position);
@@ -28,6 +17,18 @@ int RadStoga(position);
 int RadReda(position);
 
 
+int main()
+{
+    srand(time(NULL));
+
+    position head = NULL;
+    RadStoga(head);
+    RadReda(head);
+
+
+
+    return 0;
+}
 int Push(int x, position head) {
     position temp = NULL;
     temp = (position)malloc(sizeof(position));
@@ -107,4 +108,35 @@ int RadStoga(position head) {
         }
     }
     brisi(head);
+}
+int RadReda(position head) {
+    position last = NULL;
+    int i = 0;
+    char s;
+    if (head->next = NULL)
+        last = head;
+    else {
+        while (head->next != NULL) {
+            last = head;
+        }
+    }
+    while (i = 0) {
+        printf("Ako zelite stavljati u red upisite  s , a ako zelite maknuti iz reda unesite m, a ako zelite ispisati listu jer je kraj upisite k\n");
+        scanf("%d", &s);
+        if (s == "s") {
+            scanf("Unesite koji broj zelite unijeti na stog\n %d", &x);
+            Push(x, last);
+            Ispisi(head);
+        }
+        else if (s == "m") {
+            Pop(head);
+            Ispisi(head);
+
+        }
+        else if (s == "k") {
+            i++;
+            Ispisi(head);
+        }
+
+    }
 }
