@@ -13,11 +13,21 @@ int Push(position, int);
 int Pop(position, int*);
 int Izracunaj(char*, int, int, float*);
 int CitajizFilea(position, char*);
+int Izbrisi(position);
 
 int main() {
+	int var = 0;
+	stog head;
+	head.next = NULL;
 
-
-
+	var = readFromFile(&head, "postfiks.txt");
+	if (!var)
+		printf("%d\n", head.next->el);
+	else
+		printf("Pogreska!\n");
+	Izbrisi(&head);
+	system("pause");
+	return 0;
 
 
 
@@ -110,6 +120,15 @@ int CitajizFilea(position head, char* ImeFilea) {
 				break;
 			push(head, rez);
 		}
+	}
+}
+int Izbrisi(position p)
+{
+	position tmp = NULL;
+	while (p->next != NULL) {
+		tmp = p->next;
+		p->next = tmp->next;
+		free(tmp);
 	}
 }
 	
