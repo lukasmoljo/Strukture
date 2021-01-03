@@ -14,6 +14,7 @@ int Postorder(pointer);
 int Preorder(pointer);
 pointer PronadiEl(pointer, int);
 pointer max(pointer);
+pointer Izbrisi(pointer,int);
 
 
 
@@ -103,7 +104,30 @@ pointer Izbrisi(pointer root, int x) {
 
 	if (p == NULL)
 		return NULL;
-	else if (root->el == x)
-		return root;
+	else if (x < root->el) {
+		root->left = Izbrisi(root->left);
+	}
+	else if (x > root->el) {
+		root->right = Izbrisi(root->right);
+	
+	}
+	else {
+		pointer temp = NULL;
+		if (root->left != NULL && root->right != NULL) {
+			temp = max(root->left);
+			root->el = temp->el;
+			root->left = Izbrisi(root->left, temp->el);
+		}
+		else {
+			temp = root;
+			if (root->left != NULL)
+				root = root->left;
+			else
+				root = root->right;
+			free(temp);
+		}
+	}
+	return root;
+	
 	
 }
