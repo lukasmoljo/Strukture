@@ -13,6 +13,7 @@ int Unos(pointer, int);
 int Postorder(pointer);
 int Preorder(pointer);
 pointer PronadiEl(pointer, int);
+pointer max(pointer);
 
 
 
@@ -89,5 +90,20 @@ pointer PronadiEl(pointer r, int x)
 	return r;
 
 }
+pointer max(pointer root) {
 
+	if (root==NULL) return NULL;
+	while (root->right != NULL) {
+		root = root->right;
+	}
+	return root;
+}
+//za min je slicna funkcija samo sto uzimamo i mičemo lijevi pointer//
+pointer Izbrisi(pointer root, int x) {
 
+	if (p == NULL)
+		return NULL;
+	else if (root->el == x)
+		return root;
+	
+}
