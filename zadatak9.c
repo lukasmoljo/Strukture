@@ -23,6 +23,43 @@ pointer Izbrisi(pointer,int);
 
 
 int main() {
+	pointer root = NULL;
+	char c;
+	int element;
+	do {
+		printf("\n1 - Unos\n2 - Pronadi\n3 - Preorder\n4 - Postorder\n5 - Izbrisi\n6 - Kraj/n");
+		scanf(" %c", &c);
+		switch (c)
+		{
+		case '1':
+			printf("Element je: ");
+			scanf(" %d", &element);
+			root = Unos(root, element);
+			break;
+		case '2':
+			printf("Koji element tražite? ");
+			scanf(" %d", &element);
+			PronadiEl(root, element);
+			break;
+		case '3':
+			Preorder(root);
+			break;
+		case '4':
+			Postorder(root);
+			break;	
+		case '5':
+			printf("Element to delete: ");
+			scanf(" %d", &element);
+			root = deleteElement(root, element);
+			break;
+		default:
+			break;
+		}
+
+	} while (c != '6');
+
+	return 0;
+}
 
 
 
