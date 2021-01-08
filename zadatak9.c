@@ -50,7 +50,7 @@ int main() {
 		case '5':
 			printf("Element to delete: ");
 			scanf(" %d", &element);
-			root = deleteElement(root, element);
+			root = Izbrisi(root, element);
 			break;
 		default:
 			break;
