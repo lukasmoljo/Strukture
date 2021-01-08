@@ -15,6 +15,7 @@ int Preorder(pointer);
 pointer PronadiEl(pointer, int);
 pointer max(pointer);
 pointer Izbrisi(pointer, int);
+void Inorder(pointer);
 
 
 
@@ -74,11 +75,7 @@ pointer alokacija()
 pointer Unos(pointer r, int br) {
 
 	if (r == NULL) {
-		r = alokacija();
-		if (r == NULL)
-			return 0;
-		r->el = br;
-
+		return br;
 	}
 
 
@@ -91,24 +88,32 @@ pointer Unos(pointer r, int br) {
 
 	}
 	else
-		printf("brojevi su jednaki, sto znaci da taj broj ve? postoji u stablu");
+		free(br);
+	return r;
+}
+void InOrder(pointer current){
+	if(current==NULL)return;
+	InOrder(current->left);
+	printf("%d", current->number);
+	InOrder(current->right);
+
 }
 int Postorder(pointer r) {
-	if (r != NULL) {
-		Postorder(r->left);
-		Postorder(r->right);
-		printf("%d", r->el);
+	if (r != NULL) return;
+	Postorder(r->left);
+	Postorder(r->right);
+	printf("%d", r->el);
 
-	}
-	return 0;
+	
+	
 }
 int Preorder(pointer r) {
-	if (r != NULL) {
-		printf("%d", r->el);
-		Preorder(r->left);
-		Preorder(r->right);
-	}
-	return 0;
+	if (r != NULL) return;
+	printf("%d", r->el);
+	Preorder(r->left);
+	Preorder(r->right);
+	
+	
 }
 pointer PronadiEl(pointer r, int x)
 {
