@@ -9,7 +9,7 @@ typedef struct stablo {
 }stablo;
 
 pointer alokacija();
-int Unos(pointer, int);
+pointer Unos(pointer, int);
 int Postorder(pointer);
 int Preorder(pointer);
 pointer PronadiEl(pointer, int);
@@ -71,7 +71,7 @@ pointer alokacija()
 	q->left = q->right = NULL;
 	return q;
 }
-int Unos(pointer r, int br) {
+pointer Unos(pointer r, int br) {
 
 	if (r == NULL) {
 		r = alokacija();
@@ -139,7 +139,7 @@ pointer max(pointer root) {
 //za min je slicna funkcija samo sto uzimamo i mičemo lijevi pointer//
 pointer Izbrisi(pointer root, int x) {
 
-	if (p == NULL)
+	if (r == NULL)
 		return NULL;
 	else if (x < root->el) {
 		root->left = Izbrisi(root->left);
