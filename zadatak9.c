@@ -139,7 +139,7 @@ pointer max(pointer root) {
 //za min je slicna funkcija samo sto uzimamo i mičemo lijevi pointer//
 pointer Izbrisi(pointer root, int x) {
 
-	if (r == NULL)
+	if (root == NULL)
 		return NULL;
 	else if (x < root->el) {
 		root->left = Izbrisi(root->left);
