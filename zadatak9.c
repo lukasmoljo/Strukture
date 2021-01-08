@@ -14,7 +14,7 @@ int Postorder(pointer);
 int Preorder(pointer);
 pointer PronadiEl(pointer, int);
 pointer max(pointer);
-pointer Izbrisi(pointer,int);
+pointer Izbrisi(pointer, int);
 
 
 
@@ -46,7 +46,7 @@ int main() {
 			break;
 		case '4':
 			Postorder(root);
-			break;	
+			break;
 		case '5':
 			printf("Element to delete: ");
 			scanf(" %d", &element);
@@ -63,7 +63,7 @@ int main() {
 
 
 
-}
+
 pointer alokacija()
 {
 	pointer q = (pointer)malloc(sizeof(stablo));;
@@ -130,7 +130,7 @@ pointer PronadiEl(pointer r, int x)
 }
 pointer max(pointer root) {
 
-	if (root==NULL) return NULL;
+	if (root == NULL) return NULL;
 	while (root->right != NULL) {
 		root = root->right;
 	}
@@ -142,11 +142,11 @@ pointer Izbrisi(pointer root, int x) {
 	if (root == NULL)
 		return NULL;
 	else if (x < root->el) {
-		root->left = Izbrisi(root->left);
+		root->left = Izbrisi(root->left, x);
 	}
 	else if (x > root->el) {
-		root->right = Izbrisi(root->right);
-	
+		root->right = Izbrisi(root->right, x);
+
 	}
 	else {
 		pointer temp = NULL;
@@ -154,17 +154,20 @@ pointer Izbrisi(pointer root, int x) {
 			temp = max(root->left);
 			root->el = temp->el;
 			root->left = Izbrisi(root->left, temp->el);
+
 		}
 		else {
 			temp = root;
 			if (root->left != NULL)
 				root = root->left;
-			else
+
+			else {
 				root = root->right;
-			free(temp);
+				free(temp);
+			}
+			return root;
+
+
 		}
 	}
-	return root;
-	
-	
 }
